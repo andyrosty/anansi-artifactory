@@ -16,4 +16,4 @@ nexus_data_owner_gid: "200"
 
 nexus_compose_project_name: nexus
 
-nexus_install4j_add_vm_params: "-Xms512m -Xmx1024m -XX:MaxDirectMemorySize=1024m"
+nexus_install4j_add_vm_params: "-Xms512m -Xmx1024m -XX:MaxDirectMemorySize=2048m"
