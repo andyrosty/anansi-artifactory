@@ -1,0 +1,5 @@
+---
+common_manage_hostname: true
+common_manage_timezone: true
+common_manage_qemu_guest_agent: true
+common_upgrade_packages: true

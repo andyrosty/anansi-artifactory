@@ -1,0 +1,19 @@
+---
+nexus_container_name: nexus
+nexus_image: sonatype/nexus3
+nexus_image_tag: latest
+
+nexus_base_dir: /opt/nexus
+nexus_data_dir: /opt/nexus/data
+
+nexus_http_host_port: 8081
+nexus_http_container_port: 8081
+
+nexus_restart_policy: unless-stopped
+
+nexus_data_owner_uid: "200"
+nexus_data_owner_gid: "200"
+
+nexus_compose_project_name: nexus
+
+nexus_install4j_add_vm_params: "-Xms512m -Xmx1024m -XX:MaxDirectMemorySize=1024m"

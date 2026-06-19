@@ -1,0 +1,32 @@
+---
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ server_hostname | default(inventory_hostname) }}"
+  when: common_manage_hostname | bool
+
+- name: Set timezone
+  ansible.builtin.timezone:
+    name: "{{ homelab_timezone }}"
+  when: common_manage_timezone | bool
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: "{{ common_apt_cache_valid_time }}"
+
+- name: Upgrade installed packages
+  ansible.builtin.apt:
+    upgrade: dist
+  when: common_upgrade_packages | bool
+
+- name: Install common packages
+  ansible.builtin.apt:
+    name: "{{ common_packages }}"
+    state: present
+
+- name: Enable qemu guest agent
+  ansible.builtin.systemd:
+    name: qemu-guest-agent
+    enabled: true
+    state: started
+  when: common_manage_qemu_guest_agent | bool

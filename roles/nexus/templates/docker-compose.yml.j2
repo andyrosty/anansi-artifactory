@@ -1,0 +1,12 @@
+---
+services:
+  nexus:
+    image: "{{ nexus_image }}:{{ nexus_image_tag }}"
+    container_name: "{{ nexus_container_name }}"
+    restart: "{{ nexus_restart_policy }}"
+    ports:
+      - "{{ nexus_http_host_port }}:{{ nexus_http_container_port }}"
+    environment:
+      INSTALL4J_ADD_VM_PARAMS: "{{ nexus_install4j_add_vm_params }}"
+    volumes:
+      - "{{ nexus_data_dir }}:/nexus-data"

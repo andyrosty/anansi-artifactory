@@ -1,0 +1,18 @@
+---
+ansible_user: andrew
+
+homelab_timezone: America/New_York
+
+common_apt_cache_valid_time: 3600
+
+common_packages:
+  - ca-certificates
+  - curl
+  - git
+  - gnupg
+  - htop
+  - lsb-release
+  - qemu-guest-agent
+  - unzip
+  - vim
+  - wget

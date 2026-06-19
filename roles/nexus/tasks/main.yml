@@ -1,0 +1,31 @@
+---
+- name: Create Nexus base directory
+  ansible.builtin.file:
+    path: "{{ nexus_base_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Create Nexus data directory
+  ansible.builtin.file:
+    path: "{{ nexus_data_dir }}"
+    state: directory
+    owner: "{{ nexus_data_owner_uid }}"
+    group: "{{ nexus_data_owner_gid }}"
+    mode: "0755"
+
+- name: Render Nexus Docker Compose file
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ nexus_base_dir }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart nexus
+
+- name: Start Nexus service
+  community.docker.docker_compose_v2:
+    project_src: "{{ nexus_base_dir }}"
+    project_name: "{{ nexus_compose_project_name }}"
+    state: present
