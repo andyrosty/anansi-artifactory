@@ -10,3 +10,13 @@ services:
       INSTALL4J_ADD_VM_PARAMS: "{{ nexus_install4j_add_vm_params }}"
     volumes:
       - "{{ nexus_data_dir }}:/nexus-data"
+
+{% if cloudflare_tunnel_enabled | default(false) | bool %}
+  cloudflared:
+    image: "{{ cloudflare_tunnel_image }}:{{ cloudflare_tunnel_image_tag }}"
+    container_name: "{{ cloudflare_tunnel_container_name }}"
+    restart: "{{ cloudflare_tunnel_restart_policy }}"
+    command: tunnel --no-autoupdate run --token {{ cloudflare_tunnel_token }}
+    depends_on:
+      - nexus
+{% endif %}
