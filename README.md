@@ -1,4 +1,4 @@
-# ansible-artifactory
+# anansi-artifactory
 
 Ansible automation for provisioning and running a self-hosted Nexus artifact repository server in a homelab.
 
